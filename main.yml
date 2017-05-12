@@ -1,0 +1,17 @@
+---
+- hosts: all
+  user: root
+  become: true
+  tasks:
+  - include: tasks/main.yml
+  handlers:
+  - include: handlers/main.yml
+  vars_files:
+  - vars/local.yml
+  - vars/backups.yml
+  - vars/nginx.yml
+  - vars/csr.yml
+  - vars/logging.yml
+  - vars/drupal.yml
+  - vars/website.yml
+  - vars/dev-secrets.yml

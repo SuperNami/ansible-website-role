@@ -1,0 +1,29 @@
+---
+- name: make nginx folders
+  file: path={{ item }}
+        state=directory
+        owner=root
+        group=root
+        mode=0755
+
+  with_items:
+  - "{{ nginx_sites_available }}"
+  - "{{ nginx_sites_enabled }}"
+
+
+- name: copy http serverblock
+  template: src=templates/nginx/http.conf.j2
+            dest={{ nginx_sites_available }}{{ serverblock }}
+            owner=root
+            group=root
+            mode=0644
+  notify: restart nginx
+
+
+- name: make http serverblock symbolic link
+  file: src={{ nginx_sites_available }}{{ serverblock }}
+        dest={{ nginx_sites_enabled }}{{ serverblock }}
+        owner=root
+        group=root
+        state=link
+  notify: restart nginx

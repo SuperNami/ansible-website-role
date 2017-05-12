@@ -1,0 +1,3 @@
+---
+- name: generate certificate
+  command: ./certbot-auto --nginx --email {{ admin_email }} -d {{ short_url }} -d {{ www_url }} --agree-tos

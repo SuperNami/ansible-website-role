@@ -1,0 +1,16 @@
+---
+- name: make restore paths
+  file: path={{ item }}
+        state=directory
+        recurse=yes
+        owner={{ user }}
+        group={{ user }}
+        mode=0755
+
+  with_items:
+  - "{{ restore_backup_path }}"
+  - "{{ restore_backup_mysql_path }}"
+
+
+- name: download backup files
+  command: s3cmd get {{ s3_restore_backup_mysql_folder }} {{ restore_backup_mysql_path }} --force -ssl --server-side-encryption --region={{ aws_region }} --access_key={{ aws_access_key }} --secret_key={{ aws_secret_key }}

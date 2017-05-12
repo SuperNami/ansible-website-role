@@ -1,0 +1,9 @@
+---
+- name: import website in local database
+  mysql_db: name={{ db_name }}
+            login_host=localhost
+            login_user={{ mysql_root_user }}
+            login_password={{ mysql_root_password }}
+            target={{ backup_mysql_path }}database.sql
+            state=import
+

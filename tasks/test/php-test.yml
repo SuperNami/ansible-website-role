@@ -1,0 +1,7 @@
+---
+- name: copy info.php
+  template: src=templates/test/info.php
+            dest={{ publicpath }}info.php
+            owner={{ user }}
+            group={{ user }}
+            mode=0644

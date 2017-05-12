@@ -1,0 +1,7 @@
+---
+- name: copy site specific nginx logrotate
+  template: src=templates/logging/nginx.j2
+            dest=/etc/logrotate.d/nginx-{{ website_number }}
+            owner=root
+            group=root
+            mode=0644

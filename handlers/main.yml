@@ -1,0 +1,13 @@
+---
+- name: restart nginx
+  service: name=nginx state=restarted
+  ignore_errors: yes
+
+- name: reload nginx
+  service: name=nginx state=reloaded
+
+- name: start nginx, if not running
+  service: name=nginx state=started
+
+- name: stop nginx, if running
+  service: name=nginx state=stopped

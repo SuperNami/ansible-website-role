@@ -1,0 +1,3 @@
+---
+- name: backup local database
+  command: innobackupex --user={{ rds_username }} --password={{ rds_password }} --host={{ rds_db_host }} {{ mysql_backup_path }}

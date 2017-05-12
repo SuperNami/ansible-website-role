@@ -1,0 +1,4 @@
+---
+- name: copy website database
+  copy: src={{ local_backups_destination }}{{ short_url }}database.sql
+        dest={{ mysql_download }}database.sql

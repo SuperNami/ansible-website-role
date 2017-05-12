@@ -1,0 +1,14 @@
+---
+- name: set user and group permissions on all wordpress files
+  file: path={{ public_path }}
+        owner={{ nginx_user }}
+        group={{ nginx_user }}
+        recurse=yes
+
+
+- name: set 755 permission on all wordpress folders
+  command: find {{ public_path }} -type d -exec chmod 755 {} \;
+
+
+- name: set 644 permission on all wordpress files
+  command: find {{ public_path }} -type f -exec chmod 644 {} \;

@@ -1,0 +1,3 @@
+---
+- name: full backup
+  command: duply {{ short_url }} backup full

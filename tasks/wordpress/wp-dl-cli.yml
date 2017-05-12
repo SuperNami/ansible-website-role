@@ -1,0 +1,15 @@
+---
+- name: create public path
+  file: path={{ item }}
+        state=directory
+        recurse=yes
+        owner={{ nginx_user }}
+        group={{ nginx_user }}
+        mode=0755
+
+  with_items:
+  - "{{ public_path }}"
+
+
+- name: download wp with cli
+  command: wp core download --allow-root chdir={{ public_path }} creates={{ public_path }}wp-admin

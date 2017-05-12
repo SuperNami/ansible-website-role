@@ -1,0 +1,7 @@
+---
+- name: remove local database
+  mysql_db: name={{ db_name }}
+            login_host=localhost
+            login_user={{ mysql_root_user }}
+            login_password={{ mysql_root_password }}
+            state=absent

@@ -1,0 +1,48 @@
+---
+- name: create duply folders
+  file: path={{ item }}
+        state=directory
+        recurse=yes
+        owner=root
+        group=root
+        mode=0700
+
+  with_items:
+  - "{{ duply_path }}"
+
+
+- name: create backup folders
+  file: path={{ item }}
+        state=directory
+        recurse=yes
+        owner=root
+        group=root
+        mode=0755
+
+  with_items:
+  - "{{ current_backup_files_path }}"
+  - "{{ current_backup_mysql_path }}"
+
+
+- name: copy duply configuration
+  template: src=templates/backups/conf.j2
+            dest={{ duply_path }}conf
+            owner=root
+            group=root
+            mode=600
+
+
+- name: copy duply exclude configuration
+  template: src=templates/backups/exclude.j2
+            dest={{ duply_path }}exclude
+            owner=root
+            group=root
+            mode=600
+
+
+- name: copy duply pre configuration
+  template: src=templates/backups/pre.j2
+            dest={{ duply_path }}pre
+            owner=root
+            group=root
+            mode=600

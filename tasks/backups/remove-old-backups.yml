@@ -1,0 +1,3 @@
+---
+- name: remove old backups
+  command: duply {{ short_url }} purgeFull 1M --force

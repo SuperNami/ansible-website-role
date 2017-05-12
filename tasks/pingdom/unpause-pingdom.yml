@@ -1,0 +1,7 @@
+---
+- name: unpause the pingdom check
+  pingdom: uid={{ pingdom_uid }}
+           passwd={{ pingdom_passwd }}
+           key={{ pingom_key }}
+           checkid={{ pingdom_checkid }}
+           state=running

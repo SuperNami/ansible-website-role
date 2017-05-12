@@ -1,0 +1,7 @@
+---
+- name: copy geoip.html
+  template: src=templates/test/geoip.html
+            dest={{ publicpath }}geoip.html
+            owner={{ user }}
+            group={{ user }}
+            mode=0644

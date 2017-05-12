@@ -1,0 +1,8 @@
+---
+- name: remove rds database
+  mysql_db: name={{ rds_db_name }}
+            login_host={{ mysql_rds_host }}
+            login_port={{ mysql_rds_login_port }}
+            login_user={{ rds_username }}
+            login_password={{ rds_password }}
+            state=absent

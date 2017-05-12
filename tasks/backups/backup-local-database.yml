@@ -1,0 +1,3 @@
+---
+- name: backup local database
+  command: innobackupex --user={{ db_user }} --password={{ db_user_password }} {{ mysql_backup_path }}

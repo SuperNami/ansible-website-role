@@ -1,0 +1,10 @@
+---
+# GPG
+gpg_key_id: "xxx"
+gpg_key_pw: "xxx"
+
+# Options
+max_age: 1M
+max_full_backups: 3
+full_if_older_than: 1M
+verbosity: 6

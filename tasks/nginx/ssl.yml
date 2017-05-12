@@ -1,0 +1,29 @@
+---
+- name: make ssl folder
+  file: path={{ item }}
+        state=directory
+        recurse=yes
+        owner=root
+        group=root
+        mode=0755
+
+  with_items:
+  - "{{ ssl_path }}"
+
+
+- name: copy ssl certificate bundle
+  template: src=templates/ssl/{{ ssl_cert }}
+            dest={{ ssl_path }}{{ ssl_cert }}
+            owner=root
+            group=root
+            mode=0644
+  notify: restart nginx
+
+
+- name: copy ssl certificate key
+  template: src=templates/ssl/{{ ssl_cert_key }}
+            dest={{ ssl_path }}{{ ssl_cert_key }}
+            owner=root
+            group=root
+            mode=0600
+  notify: restart nginx

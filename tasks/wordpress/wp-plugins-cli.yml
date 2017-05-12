@@ -1,0 +1,15 @@
+---
+- name: install nginx-helper plugin
+  command: wp plugin install nginx-helper --allow-root chdir={{ public_path }} creates={{ public_path }}wp-content/plugins/nginx-helper
+
+
+- name: install cloudflare plugin
+  command: wp plugin install cloudflare --allow-root chdir={{ public_path }} creates={{ public_path }}wp-content/plugins/cloudflare
+
+
+- name: install w3-total-cache plugin
+  command: wp plugin install w3-total-cache --allow-root chdir={{ public_path }} creates={{ public_path }}wp-content/plugins/w3-total-cache
+
+
+- name: install wp-optimize plugin
+  command: wp plugin install wp-optimize --allow-root chdir={{ public_path }} creates={{ public_path }}wp-content/plugins/wp-optimize

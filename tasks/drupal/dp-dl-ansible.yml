@@ -1,0 +1,18 @@
+---
+- name: download the archive
+  get_url: url=https://ftp.drupal.org/files/projects/drupal-{{ drupal_version }}.tar.gz
+           dest={{ server_path }}drupal-{{ drupal_version }}.tar.gz
+           force=yes
+
+
+- name: unpack the archive
+  unarchive: src={{ server_path }}drupal-{{ drupal_version }}.tar.gz dest={{ server_path }} creates={{ public_path }}core copy=no
+
+
+- name: rename wordpress folder
+  command: mv drupal-{{ drupal_version }} public chdir={{ server_path }} creates={{ public_path }}core
+
+
+- name: delete the archive
+  file: path={{ server_path }}drupal-{{ drupal_version }}.tar.gz
+        state=absent

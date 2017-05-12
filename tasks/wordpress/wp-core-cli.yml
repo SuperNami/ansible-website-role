@@ -1,0 +1,7 @@
+---
+- name: install wordpress
+  command: wp core install --path="{{ public_path }}" --url="{{ short_url }}" --title="{{ short_url }}" --admin_user="{{ wp_user }}" --admin_password="{{ wp_user_password }}" --admin_email="{{ admin_email }}" --allow-root
+
+
+- name: set postname permalinks
+  command: wp rewrite structure '/%postname%/' --allow-root chdir={{ public_path }}

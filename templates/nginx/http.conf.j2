@@ -1,0 +1,84 @@
+### Main serverblock
+
+### Redirect www to non www
+#
+server {
+
+  listen [::]:80;
+
+  server_name {{ www_url }};
+
+  return 301 $scheme://{{ short_url }}$request_uri;
+
+}
+
+### Main configuration
+#
+server {
+
+  listen [::]:80;
+
+  server_name {{ short_url }};
+
+  root /var/www/{{ short_url }}/public;
+
+  index index.php;
+
+  include {{ nginx_conf_server }}*.conf;
+
+  access_log {{ logs_path }}nginx-access.log {{ serverblock_access_option }};
+  error_log {{ logs_path }}nginx-error.log {{ serverblock_error_option }};
+
+  expires {{ expires }};
+
+## No php scripts in the upload directory
+#
+# Block php scripts in the upload directory
+#
+  location ~* /(?:uploads|files)/.*.php$ {
+    deny all;
+  }
+
+## Block access to unnecessary wp files
+#
+# Deny requests to /wp-config.php /wp-comments-post.php /readme.html /license.txt
+#
+location ~ /(.|wp-config.php|wp-comments-post.php|readme.html|license.txt) {
+    deny all;
+}
+
+## Block wp admin requests
+#
+# Deny requests to /wp-admin/wp-login.php
+#
+#  location ~ ^/(wp-admin|wp-login\.php) {;
+#                deny all;
+#  }
+
+## Deny illegal host headers.
+#
+# Deny all other headers different from below headers
+#
+  if ($host !~* ^({{ short_url }}|{{ www_url }})$ ) {
+    return 405;
+  }
+
+## Stop image hotlinking
+#
+  location ~ .(gif|png|jpe?g)$ {
+    valid_referers none blocked {{ short_url }} *.{{ short_url }};
+    if ($invalid_referer) {
+      return 403;
+    }
+  }
+
+## Stop image and document hijacking
+#
+# Only allow jpg png and css requests from below headers
+#
+#  location ~* (\.jpg|\.png|\.css)$ {
+#    if ($http_referer !~ ^(domain.com) ) {
+#      return 405;
+#    }
+#  }
+}

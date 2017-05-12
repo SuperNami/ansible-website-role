@@ -1,0 +1,5 @@
+---
+- name: copy wp-config.php
+  template: src=templates/wordpress/wp-config.php.j2
+            dest={{ public_path }}wp-config.php
+            mode=600

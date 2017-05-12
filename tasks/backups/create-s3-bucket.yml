@@ -1,0 +1,62 @@
+---
+- name: create backups folder
+  s3: bucket={{ short_url }}
+      region={{ aws_region }}
+      object=backups
+      aws_access_key={{ aws_access_key }}
+      aws_secret_key={{ aws_secret_key }}
+      mode=create 
+
+
+- name: create backups current folder
+  s3: bucket={{ short_url }}
+      region={{ aws_region }}
+      object=backups/current
+      aws_access_key={{ aws_access_key }}
+      aws_secret_key={{ aws_secret_key }}
+      mode=create 
+
+
+- name: create backups current files folder
+  s3: bucket={{ short_url }}
+      region={{ aws_region }}
+      object=backups/current/files
+      aws_access_key={{ aws_access_key }}
+      aws_secret_key={{ aws_secret_key }}
+      mode=create 
+
+
+- name: create backups current mysql folder
+  s3: bucket={{ short_url }}
+      region={{ aws_region }}
+      object=backups/current/mysql
+      aws_access_key={{ aws_access_key }}
+      aws_secret_key={{ aws_secret_key }}
+      mode=create
+
+
+- name: create backups restore folder
+  s3: bucket={{ short_url }}
+      region={{ aws_region }}
+      object=backups/restore
+      aws_access_key={{ aws_access_key }}
+      aws_secret_key={{ aws_secret_key }}
+      mode=create 
+
+
+- name: create backups restore files folder
+  s3: bucket={{ short_url }}
+      region={{ aws_region }}
+      object=backups/restore/files
+      aws_access_key={{ aws_access_key }}
+      aws_secret_key={{ aws_secret_key }}
+      mode=create 
+
+
+- name: create backups restore mysql folder
+  s3: bucket={{ short_url }}
+      region={{ aws_region }}
+      object=backups/restore/mysql
+      aws_access_key={{ aws_access_key }}
+      aws_secret_key={{ aws_secret_key }}
+      mode=create 

@@ -1,0 +1,8 @@
+---
+- name: set 777 permission on all wordpress folders
+  command: find {{ publicpath }} -type d -exec chmod 777 {} \;
+
+
+- name: set 777 permission on all wordpress files
+  command: find {{ publicpath }} -type f -exec chmod 777 {} \;
+

@@ -1,0 +1,83 @@
+---
+# Name
+#
+name: website.com
+
+# Urls
+#
+short_url: "{{ name }}"
+www_url: "www.{{ name }}"
+
+# Folder paths
+#
+server_path: "/var/www/{{ short_url }}/"
+logs_path: "/var/www/{{ short_url }}/logs/"
+public_path: "/var/www/{{ short_url }}/public/"
+
+# Wordpress paths
+#
+wp_content: "/var/www/{{ short_url }}/public/wp-content/"
+wp_themes: "/var/www/{{ short_url }}/public/wp-content/themes/"
+wp_plugins: "/var/www/{{ short_url }}/public/wp-content/plugins/"
+
+# Configuration
+#
+serverblock: "{{ short_url }}.conf"
+wp_config_path: "/var/www/{{ short_url }}/public/wp-config.php"
+
+# Local database
+#
+db_name: "{{ name }}"
+
+# RDS database
+#
+rds_db_name: "{{ name }}"
+rds_snapshot_name: "{{ name }}_snapshot_1"
+
+# Duply path
+#
+duply_path: "/etc/duply/{{ short_url }}/"
+
+# Backup path
+#
+current_backup_path: "/var/www/{{ short_url }}/backups/current"
+current_backup_files_path: "/var/www/{{ short_url }}/backups/current/files"
+current_backup_mysql_path: "/var/www/{{ short_url }}/backups/current/mysql"
+
+# S3 current backup url
+#
+s3_current_backup_folder: "s3://s3-{{ aws_region }}.amazonaws.com/{{ short_url }}/backups/current"
+s3_current_backup_files_folder: "s3://s3-{{ aws_region }}.amazonaws.com/{{ short_url }}/backups/current/files"
+s3_current_backup_mysql_folder: "s3://s3-{{ aws_region }}.amazonaws.com/{{ short_url }}/backups/current/mysql"
+
+# Restore backups path
+#
+restore_backup_path: "/var/www/{{ short_url }}/backups/restore"
+restore_backup_files_path: "/var/www/{{ short_url }}/backups/restore/files"
+restore_backup_mysql_path: "/var/www/{{ short_url }}/backups/restore/mysql"
+
+# S3 restore backup url
+#
+s3_restore_backup_folder: "s3://s3-{{ aws_region }}.amazonaws.com/{{ short_url }}/backups/restore"
+s3_restore_backup_files_folder: "s3://s3-{{ aws_region }}.amazonaws.com/{{ short_url }}/backups/restore/files"
+s3_restore_backup_mysql_folder: "s3://s3-{{ aws_region }}.amazonaws.com/{{ short_url }}/backups/restore/mysql"
+
+# Path to SSL certificate
+#
+ssl_path: "/var/www/{{ short_url }}/ssl/"
+
+# SSL certificate name
+#
+ssl_cert: "{{ short_url }}.chained.crt"
+
+# SSL certificate key
+#
+ssl_cert_key: "{{ short_url }}.key"
+
+# Path to SSL certificate with name
+#
+ssl_cert_path: "/var/www/{{ short_url }}/ssl/{{ ssl_cert }}"
+
+# Path to SSL key with name
+#
+ssl_cert_key_path: "/var/www/{{ short_url }}/ssl/{{ ssl_cert_key }}"

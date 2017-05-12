@@ -1,0 +1,9 @@
+---
+- name: run cron job once a day
+  cron: name="{{ short_url }}"
+        day="1"
+        hour="0"
+        minute="0"
+        job="/etc/duply/{{ www_url }}"
+        user={{ user }}
+        state=present

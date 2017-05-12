@@ -1,0 +1,3 @@
+---
+- name: generate a certificate signing request
+  command: openssl req -nodes -newkey rsa:2048 -nodes -keyout {{ short_url }}.key -out {{ short_url }}.csr -subj "/C={{ country }}/ST={{ province }}/L={{ locality }}/O={{ company }}/OU={{ unit }}/CN={{ www_url }}" chdir={{ user_home }} creates={{ user_home }}/{{ short_url }}.csr

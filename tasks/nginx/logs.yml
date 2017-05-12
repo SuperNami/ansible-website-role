@@ -1,0 +1,27 @@
+---
+- name: create website folders
+  file: path={{ item }}
+        state=directory
+        recurse=yes
+        owner={{ nginx_user }}
+        group={{ nginx_user }}
+        mode=0755
+
+  with_items:
+  - "{{ server_path }}logs/"
+
+
+- name: make and set permissions nginx site specific error.log
+  file: path={{ server_path }}logs/nginx-error.log
+        owner={{ nginx_user }}
+        group={{ nginx_user }}
+        state=touch
+        mode=0755
+
+
+- name: make and set permissions nginx site specific access.log
+  file: path={{ server_path }}logs/nginx-access.log
+        owner={{ nginx_user }}
+        group={{ nginx_user }}
+        state=touch
+        mode=0755

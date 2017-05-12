@@ -1,0 +1,129 @@
+---
+### Nginx
+- include: nginx/logs.yml
+  tags: logs
+
+- include: nginx/csr.yml
+  tags: csr
+
+- include: nginx/ssl.yml
+  tags: ssl
+
+- include: nginx/http.yml
+  tags: http
+
+- include: nginx/https.yml
+  tags: https
+
+
+### AWS S3
+- include: backups/create-s3-bucket.yml
+  tags: create_aws_bucket
+
+
+### Database
+- include: database/dl-db-backup.yml
+  tags: dl_db_backup
+
+- include: database/copy-local-db.yml
+  tags: copy_local_db
+
+- include: database/create-local-db.yml
+  tags: create_local_db
+
+- include: database/restore-local-db.yml
+  tags: restore_local_db
+
+- include: database/remove-local-db.yml
+  tags: remove_local_db
+
+- include: database/create-rds-db.yml
+  tags: create_rds_db
+
+- include: database/restore-rds-db.yml
+  tags: restore_rds_db
+
+- include: database/remove-rds-db.yml
+  tags: remove_rds_db
+
+
+### Wordpress
+- include: wordpress/wp-dl-ansible.yml
+  tags: wp_dl_ansible
+
+- include: wordpress/wp-dl-cli.yml
+  tags: wp_dl_cli
+
+- include: wordpress/wp-config.yml
+  tags: wp_config
+
+- include: wordpress/wp-permissions.yml
+  tags: wp_permissions
+
+- include: wordpress/wp-core-cli.yml
+  tags: wp_core_cli
+
+- include: wordpress/wp-plugins-cli.yml
+  tags: wp_plugins_cli
+
+
+### Ansible
+- include: drupal/dp-dl-ansible.yml
+  tags: dp_dl_ansible
+
+
+### Logging
+- include: logging/logrotate.yml
+  tags: logrotate
+
+
+### Backups
+- include: backups/backup-files.yml
+  tags: backup_files
+
+- include: backups/dl-backup-files.yml
+  tags: dl_backup_files
+
+- include: backups/configure-duply.yml
+  tags: configure_duply
+
+- include: backups/configure-backup-cron.yml
+  tags: configure_backup_cron
+
+- include: backups/backup-local-database.yml
+  tags: backup_local_database
+
+- include: backups/backup-remote-database.yml
+  tags: backup_remote_database
+
+- include: backups/remove-old-backups.yml
+  tags: remove_old_backups
+
+
+### Permissions
+- include: permissions/temp-permissions.yml
+  tags: temp_permissions
+
+- include: permissions/revert-permissions.yml
+  tags: revert_permissions
+
+
+### Redis
+- include: redis/enable.yml
+  tags: redis_enable
+
+
+### Test
+- include: test/php-test.yml
+  tags: php_test
+
+- include: test/geoip-test.yml
+  tags: geoip_test
+
+
+### Pingdom
+- include: pingdom/unpause-pingdom.yml
+  tags: unpause_pingdom
+
+- include: pingdom/pause-pingdom.yml
+  tags: pause_pingdom
