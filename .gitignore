@@ -1,2 +1,3 @@
 vars/dev-secrets.yml
 vars/vault.yml
+.idea
